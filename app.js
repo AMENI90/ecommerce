@@ -4,6 +4,7 @@ const dotenv=require('dotenv')
 const app=express()
 const CategorieRouter=require("./routes/categorie.route")
 const scategorieRouter =require("./routes/scategorie.route")
+const chatbotRouter=require("./routes/cahtbot.router")
 app.use(express.json())
 
 dotenv.config()
@@ -18,6 +19,7 @@ mongoose.connect(process.env.DATABASECLOUD)
 process.exit()
 })
 //connecter
+app.use("/api/chat",chatbotRouter)
 app.use("/api/categories",CategorieRouter)
 app.use('/api/scategories', scategorieRouter);
 app.listen(4000,function(){
