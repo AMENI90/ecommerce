@@ -4,7 +4,7 @@ const dotenv=require('dotenv')
 const app=express()
 const CategorieRouter=require("./routes/categorie.route")
 const scategorieRouter =require("./routes/scategorie.route")
-const chatbotRouter=require("./routes/cahtbot.router")
+const chatbotRouter=require("./routes/chatbot.route")
 app.use(express.json())
 
 dotenv.config()
