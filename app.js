@@ -10,9 +10,12 @@ const articleRouter =require("./routes/article.route")
 const chatbotRouter=require("./routes/chatbot.route")
 const userRouter = require("./routes/user.route")
 const chatbotRequeteRouter = require("./routes/chatbot-requete.route")
+const path = require('path');
 app.use(express.json())
 app.use(cors());
 dotenv.config()
+app.use(express.static(path.join(__dirname, './client/build'))); 
+app.get('*', (req, res) => { res.sendFile(path.join(__dirname,'./client/build/index.html')); });
 
 app.get('/',(req,res)=>{
     res.send("bienvenue dans notre site")
@@ -31,6 +34,8 @@ app.use("/api/article",articleRouter)
 app.use('/api/payment',paymentRouter)
 app.use('/api/scategories', scategorieRouter);
 app.use('/api/chatbot', chatbotRequeteRouter);
+app.use(express.static(path.join(__dirname, './client/build'))); 
+app.get('*', (req, res) => { res.sendFile(path.join(__dirname,'./client/build/index.html')); });
 app.listen(4000,function(){
     console.log(`serveur is listen on port ${process.env.PORT}`)
 })
